@@ -13,7 +13,7 @@ bookRouter.use(bodyParser.json());
 // });
 
 bookRouter.all('/', function(req, res, next) {
-    res.end("getting alltttt the bo here");
+    res.end("gettingkljjlkdwe alltttt the bo here");
   });
 
 module.exports = bookRouter;
