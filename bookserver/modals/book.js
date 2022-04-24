@@ -14,6 +14,9 @@ const book = new Schema({
     name : {
         type : String
     },
+    author:{
+        type: String
+    },
     description : {
         type : String
     },

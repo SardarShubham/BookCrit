@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var cors = require('cors')
+
 // connecting database
 const mongoose = require ('mongoose');
 const url = 'mongodb://127.0.0.1:27017/bookmart';
@@ -31,6 +33,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
+const { createProxyMiddleware } = require('http-proxy-middleware');
+app.use('/api', createProxyMiddleware({ 
+  target: 'http://localhost:5000/', //original url
+  changeOrigin: true, 
+  //secure: false,
+  onProxyRes: function (proxyRes, req, res) {
+     proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+  }
+}));
 
 app.use('/books', bookRouter);
 app.use('/', indexRouter);
