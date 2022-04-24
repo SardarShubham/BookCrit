@@ -7,6 +7,7 @@ const reviewSchema = new Schema({
     },
     rating:{
         type: Number
+        
     }
 })
 
